@@ -1,0 +1,38 @@
+
+
+ // -------- START - Block title
+ /**
+  * Desc: Something to do in line here
+  * Author: mauromandracchia@gmail.com 
+  * (or id or nickname)
+  * Todo [X]: Something I did.
+  * Todo [ ]: Something I want do.
+  * Todo [ ][@mauroMandracchia, @test@company.com, @12456710, #groupName, #groupId, #groupEmail][#ui, #design, #consolidation, #agoust]: Do a unit and not testing.
+  * Todo [ ][#backEndTeam][#ui, #backend]: Do a unit and not testing.
+  * > ListName
+  * >> Todo [ ]: - Something
+  * >>
+  */
+ 
+   // -------- START - Block title
+ /**
+  * Todo [X]: Something I did.
+  * Todo [ ]: Something I want do.
+  */
+
+	
+	   // -------- START - Block title
+	 /**
+	  * Todo [X]: Something I did.
+	  * Todo [ ]: Something I want do.
+	  */
+
+   	   // -------- END
+   var Customer = function(){
+      this.Private = "Something";
+   };
+   // -------- END
+
+ 
+
+ // -------- END

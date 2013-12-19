@@ -1,0 +1,168 @@
+
+{{{requirejs b="something" widget="something"}}}
+{{{template.web.widget.header someOptions="something" test="Linksharing" head.title="Linksharing" }}}
+      <!-- Example row of columns -->
+      <!-- Example row of columns -->  
+		<style>
+			/*Some styles*/
+			* {margin: 0; padding: 0;}
+			
+			body{
+				background: #FAF7D6;
+			}
+			
+			body, h1, h2, h3, h4, h5 a{
+				font-family: "Comic Sans MS", "Lucida", "Helvetica", "Arial", sans-serif;
+			}		
+			
+			.panel-footer .nav-pills li.label{
+				color: #555;
+			}
+			
+			.panel-footer .nav-pills li.label .badge{
+				color: #333;
+				background: #FFF;
+			}
+			
+			.promoting{
+				color: #555;
+				font-size: 1.5em;
+			}
+			
+			
+		</style>
+		
+		<div class="row promoting">
+			<div class="col-md-12 text-center">
+				<h1>Amsterdam Christmas 2013</h1>
+				<h3>Little Italy presents</h3>
+				<img src="img/vvMT6.gif" alt="christmas">
+			</div>
+			<br/>
+			<div class="col-md-12 text-center">
+				If you are here maybe you already know why!
+				This year we want organize something special together.
+				Usualy we cook to our guest, but this time lets do bring and share.
+				We want organize the most cool Christmas together for the dinner of 24th and the lunch of the 25th.
+			</div>
+			<br/>
+		</div>
+		<br />
+		<br />
+		<br />
+		<div class="row">
+<!--       <div class="row-fluid"> -->
+<!--         <div class="span12"> -->
+			<!-- The ascii art comes in the pre tag below -->
+			<div id="promotion" class="collapse">
+			</div>
+				
+			<div class="col-md-12 text-center">
+				
+				
+				{{#Comments}}
+					{{#user}}
+				<div class="panel">
+					<div class="panel-body text-center">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x47c5e26f3e33bdeb%3A0x353163b6dfc2a2a!2sEsmoreitstraat%2C+Amsterdam%2C+Paesi+Bassi!5e0!3m2!1sit!2s!4v1387402312402" class="col-md-12" height="600" frameborder="0" style="border:0"></iframe>
+					</div>
+					<div class="panel-footer">
+						Whe are waiting you from the 7:00 of 24th and 10:00 of 25th 
+					</div>
+				</div>
+				<div class="panel">
+					<div class="panel-body text-center">
+						<h3>We have reached</h3>
+						<div class="col-md-3">
+							<h4>Food & Snacks</h4>
+							<h1>15</h1>
+					    	<ul class="list-group text-left">
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							</ul>
+						</div>
+						<div class="col-md-3">
+							<h4>Drinks</h4>
+							<h1>15</h1>
+					    	<ul class="list-group text-left">
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							</ul>
+						</div>
+						<div class="col-md-3">
+							<h4>Stuff & Games</h4>
+							<h1>15</h1>
+					    	<ul class="list-group text-left">
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							</ul>
+						</div>
+						<div class="col-md-3">
+							<h4>Friends</h4>
+							<h1>15</h1>
+					    	<ul class="list-group text-left">
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							  <li class="list-group-item"> <span class="badge">14</span> Cras justo odio </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12 text-left">
+						<div class="col-md-2 comment-details text-center">
+							<img src="http://lorempixel.com/100/100/people" class="img-thumbnail" alt="avatar" />
+							<br />
+							Cristina Valota
+						</div>
+						<div class="col-md-10">
+							<div class="panel panel-default">
+								<div class="panel-body">
+							    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat posuere tellus sit amet iaculis. 
+							    	In commodo arcu vitae nibh convallis, non bibendum nisi mattis. Donec a lectus ante. Sed quis mi sagittis, 
+							    	elementum est quis, hendrerit massa. Quisque vitae venenatis tellus. Suspendisse dictum pharetra augue. 
+							    	Proin vel dui est. Nam at nisi suscipit, sodales quam vitae, sodales erat. Donec vulputate, nisl vel aliquet bibendum,
+							    	augue ante condimentum sapien, ac rhoncus massa libero vel tellus. Nulla consequat mauris in porta luctus
+								</div>
+								<div class="panel-footer">
+									<ul class="nav nav-pills">
+										<li class="label label-warning">Food & Snacks <span class="badge">3</span></li>
+										<li class="label label-primary">Drink <span class="badge">3</span></li>
+										<li class="label label-success">Stuff and Games <span class="badge">3</span></li>
+										<li class="label label-info">Friends <span class="badge">3</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					<br/>
+					<br/>
+					<br/>
+				
+					{{/user}}
+		              {{#not_user}}
+		              {{/not_user}}
+				{{/Comments}}
+			</div>
+			    {{{template.web.widget.form}}}
+				
+			{{#Login}}
+			  {{#user}}
+					    
+              {{/user}}
+              {{#not_user}}
+	              <a href="#" class="btn btn-primary e-login-modal">Login</a>
+              {{/not_user}}
+          	{{/Login}}
+          	
+		</div>
+				
+				
+<!-- 			</div> -->
+			
+<!--         </div> -->
+<!--       </div> -->
+      
+{{{template.web.widget.footer}}}

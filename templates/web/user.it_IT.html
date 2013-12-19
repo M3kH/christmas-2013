@@ -1,0 +1,86 @@
+
+{{{requirejs b="something" widget="something"}}}
+{{{template.web.widget.header someOptions="something" test="Linksharing" head.title="Linksharing" }}}
+      <!-- Example row of columns -->
+      <!-- Example row of columns -->
+      <br/>
+      <br/>
+  
+		<style>
+			/*Some styles*/
+			* {margin: 0; padding: 0;}
+			
+			body {
+				text-align: center;
+			}
+			
+			#container {
+				margin: 0 auto;
+			}
+			
+			.links{
+				list-style: none;
+				text-align: left;
+				border-top: 1px solid #999;
+				margin: 0;
+				padding: 0;
+			}
+			
+			.links li{
+				padding: 10px;
+				border-right: 1px solid #999;
+				border-bottom: 1px solid #999;
+				border-left: 1px solid #999;
+				background: #CCC;
+			}
+			.links li:hover{
+				background: #BBB;
+			}
+			
+			.links a{
+				font-size: 2em;
+				color: #666;
+				display: block;
+				text-shadow: 1px 1px 0 #FFF;
+			}
+			.links a:hover{
+				color: #333;
+				text-decoration: none;
+			}
+			
+		</style>
+      <div class="row-fluid">
+        <div class="span12">
+			<!-- The ascii art comes in the pre tag below -->
+			<div id="container">
+				{{#Bookmark}}
+					{{#if user}}
+					<a class=" btn-primary btn-prig btn button" href="{{link}}">Dragg to the bookmarks</a>
+					{{/if}}
+				{{/Bookmark}}
+				
+				{{#Links}}
+        			{{#each days}}
+					<div id="{{day}}">
+						<h2>{{day}}</h2>
+						<ul class="links">
+		        			{{#each elems}}
+							<li>
+								<a href="{{url}}">{{title}}</a>
+								<div class="hide">
+									{{! description}}
+								</div>
+							</li>
+		        			{{/each}}
+						</ul>
+					</div>
+					<hr/>
+        			{{/each}}
+					
+				{{/Links}}
+			</div>
+			
+        </div>
+      </div>
+      
+{{{template.web.footer}}}

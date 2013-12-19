@@ -1,0 +1,101 @@
+/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
+/* zurb.com */
+/* humanstxt.org */
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: jQuery, Orbit, Reveal
+  Software: Coda, Textmate, Git
+
+ /**
+  * Registers the text to display in a tool tip.   The text 
+  * displays when the cursor lingers over the component.
+  *
+  * @param text  the string to display.  If the text is null, 
+  *              the tool tip is turned off for this component.
+  */
+ 
+
+ // -------- START - Block title
+ /**
+  * Desc: Something to do in line here
+  * Author: mauromandracchia@gmail.com 
+  * (or id or nickname)
+  * Todo [X]: Something I did.
+  * Todo [ ]: Something I want do.
+  * Todo [ ][@mauroMandracchia, @test@company.com, @12456710, #groupName, #groupId, #groupEmail][#ui, #design, #consolidation, #agoust]: Do a unit and not testing.
+  * Todo [ ][#backEndTeam][#ui, #backend]: Do a unit and not testing.
+  * > ListName
+  * >> Todo [ ]: - Something
+  * >>
+  */
+ 
+ var Customer = function(){
+ 	this.Private = "Something";
+ };
+ 
+ // -------- END
+ 
+
+ // -------- START - Block title
+ /**
+  * Desc: Something to do in line here
+  * Author: mauromandracchia@gmail.com 
+  * (or id or nickname)
+  * Todo [X]: Something I did.
+  * Todo [ ]: Something I want do.
+  * Todo [ ][@mauroMandracchia, @test@company.com, @12456710, #groupName, #groupId, #groupEmail][#ui, #design, #consolidation, #agoust]: Do a unit and not testing.
+  * Todo [ ][#backEndTeam][#ui, #backend]: Do a unit and not testing.
+  * > ListName
+  * >> Todo [ ]: - Something
+  * >>
+  */
+ 
+   // -------- START - Block title
+
+	
+	   // -------- START - Block title
+   	   // -------- END
+   var Customer = function(){
+      this.Private = "Something";
+   };
+   // -------- END
+
+ 
+
+ // -------- END
+ 
+
+ // -------- START - Block title
+ /**
+  * Desc: Something to do in line here
+  * Author: mauromandracchia@gmail.com 
+  * (or id or nickname)
+  * Todo [X]: Something I did.
+  * Todo [ ]: Something I want do.
+  * Todo [ ][@mauroMandracchia, @test@company.com, @12456710, #groupName, #groupId, #groupEmail][#ui, #design, #consolidation, #agoust]: Do a unit and not testing.
+  * Todo [ ][#backEndTeam][#ui, #backend]: Do a unit and not testing.
+  * > ListName
+  * >> Todo [ ]: - Something
+  * >>
+  */
+ 
+   // -------- START - Block title
+   var Customer = function(){
+      this.Private = "Something";
+   };
+   // -------- END
+
+ 
+
+ // -------- END
+
+
+ // -------- START
+  // Todo [X]: Something I did.
+  // Todo [ ]: Something I want do.
+
+ var Customer = function(){
+ 	this.Private = "Something";
+ };
+ // -------- END
