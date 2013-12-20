@@ -14,7 +14,7 @@
  * @since      -
  * @deprecated -
  */
- 
+
 // @TODO Add the possibility when is GET the data to add pagination. (LIMIT 0 100)
 // @TODO Add the possibility to GET the data by filters.
 
@@ -22,7 +22,7 @@
 class Shell {
 	public $host = "localhost";
 	public $port = "3306";
-	public $dbname = "christmas";
+	public $dbname = "main";
 	public $user = "root";
 	public $password = "root";
 }

@@ -16,7 +16,7 @@
 
 
 class Comments {
-	
+
 	/**
 	 * Initialization of the class.
 	 *
@@ -33,7 +33,7 @@ class Comments {
 			$this->user_id = 0;
 		}
 	}
-	
+
 	/**
 	 * This function check if the user already exist in the DB.
 	 *
@@ -42,25 +42,37 @@ class Comments {
 	 * @author Mauro Mandracchia <info@ideabile.com>
 	 */
 	public function GetAll ( ){
-		
+
 		$q = "SELECT `comments`.`id`, `comments`.`message`, `comments`.`brings`, `comments`.`date`,
-		`users`.`name`, `users`.`last_name`, `users`.`id` as `users`  
+		`users`.`name`, `users`.`last_name`, `users`.`id` as `users`
 FROM `comments` JOIN `users` ON `comments`.`user` = `users`.`id` ORDER BY `date` ASC";
+
 		$p = array();
-		
+		$result = array();
+		$_totals = array();
+		$_total_res = array();
+
 		$query = $this->db->Main($q, $p);
-		
+
 		if($query) {
-			$result = $query->fetchAll(PDO::FETCH_ASSOC);
-			if( $result ) {
-				foreach ($result as $key => $value) {
-					$res = $result[$key]['brings'];
+			$_result = $query->fetchAll(PDO::FETCH_ASSOC);
+			if( $_result ) {
+				foreach ($_result as $key => $value) {
+
+					$res = $_result[$key]['brings'];
 					$res = json_decode($res, true);
 					$totals = $this->GetTotals($res);
+
+					$_total_res = array_merge_recursive($_total_res,$res);
+
 					$res = array_merge_recursive($res, $totals);
-					
-					$result[$key]['brings'] = $res;
+					$_totals = array_merge_recursive($_totals, $totals);
+					$_result[$key]['brings'] = $res;
 				}
+
+				$result["totals"] =  $this->GetGlobalTotals($_totals);
+				$result["totals_result"] =  $_total_res;
+				$result["details"] = $_result;
 				return $result;
 			}else{
 				return array();
@@ -69,7 +81,74 @@ FROM `comments` JOIN `users` ON `comments`.`user` = `users`.`id` ORDER BY `date`
 			return array();
 		}
 	}
-	
+
+	/**
+	 * This function check if the user already exist in the DB.
+	 *
+	 * @return BOOLEAN
+	 * @see Main (DB)
+	 * @author Mauro Mandracchia <info@ideabile.com>
+	 */
+	public function NewLink ( ){
+
+
+		if(count($_POST) > 0 && isset($_SESSION['id_user']) ){
+
+			$user_id = $_SESSION['id_user'];
+
+			foreach($_POST as $k => $v){
+				$key = (string) $k;
+				switch($key){
+					case 'msg':
+						$message = $v;
+						break;
+					case 'brings':
+						$brings = $v;
+						break;
+				}
+			}
+
+// 			var_dump($_POST);
+			if( $message != '' && $brings != '' && $user_id > 0 ){
+				return $this->Create ( $message, $brings, $user_id );
+			}
+
+			return false;
+
+		}else{
+			return false;
+		}
+	}
+
+
+	/**
+	 * This function check if the user already exist in the DB.
+	 *
+	 * @return BOOLEAN
+	 * @see Main (DB)
+	 * @author Mauro Mandracchia <info@ideabile.com>
+	 */
+	public function Create (  $message, $brings, $user = 0 ){
+
+		if($user === 0){
+			return false;
+		}
+
+		if(!$date){
+			$dtNow = new DateTime();
+			$date = $dtNow->format(DateTime::ISO8601);
+		}
+
+		if(isset($_SESSION['id_user'])){
+			$user = $_SESSION['id_user'];
+		}
+
+		$query = $this->db->Main("INSERT INTO comments( `user`, `message`, `brings`, `date` ) VALUES ( ?, ?, ?, NOW() )", array($user, $message, $brings));
+		$id = $this->db->db->lastInsertId('id');
+
+		return $id;
+	}
+
 	private function GetTotals( $arr ){
 		$res = array();
 		foreach ($arr as $k => $v) {
@@ -83,117 +162,24 @@ FROM `comments` JOIN `users` ON `comments`.`user` = `users`.`id` ORDER BY `date`
 		}
 		return $res;
 	}
-	
-	/**
-	 * This function check if the user already exist in the DB.
-	 *
-	 * @return BOOLEAN
-	 * @see Main (DB)
-	 * @author Mauro Mandracchia <info@ideabile.com>
-	 */
-	public function GetByLink ( $id = '' ){
-		$id = $_POST['id'];
-		$query = $this->db->Main("SELECT `tags`.`id`, `tags`.`name`, (`rel_tags_links`.`id_link` IS NOT NULL) AS `id_link` FROM `tags` LEFT OUTER JOIN `rel_tags_links` ON `rel_tags_links`.`id_link` = ? GROUP BY `tags`.`id`, `tags`.`name` ORDER BY `tags`.`name` ASC ", array($id));
-		
-		$result = false;
-		if($query) {
-			$result = $query->fetch(PDO::FETCH_ASSOC);
-		}
-		if( $result ) {
-			return $result;
-		}else{
-			return array();
-		}
-	}
-	
-	/**
-	 * This function check if the user already exist in the DB.
-	 *
-	 * @return BOOLEAN
-	 * @see Main (DB)
-	 * @author Mauro Mandracchia <info@ideabile.com>
-	 */
-	public function GetByTag ( $tag = '' ){
-		$query = $this->db->Main("SELECT `tags`.`id` FROM `tags` WHERE `tags`.`name` = ?", array($tag));
-		// var_dump($query);
-		
-		$result = false;
-		if($query) {
-			$result = $query->fetch(PDO::FETCH_ASSOC);
-		}
-		
-		if( $result ) {
-			return $result['id'];
-		}else{
-			return $this->Create( $tag );
-		}
-	}
-	
-	/**
-	 * This function check if the user already exist in the DB.
-	 *
-	 * @return BOOLEAN
-	 * @see Main (DB)
-	 * @author Mauro Mandracchia <info@ideabile.com>
-	 */
-	public function Create ( $tag ){
-		$query = $this->db->Main("INSERT INTO tags( `name` ) VALUES ( ? )", array($tag));
-		return $this->db->db->lastInsertId('id');
-	}
-	
-	/**
-	 * This function check if the user already exist in the DB.
-	 *
-	 * @return BOOLEAN
-	 * @see Main (DB)
-	 * @param $tags should be a string = "one, two, three, four"
-	 * @author Mauro Mandracchia <info@ideabile.com>
-	 */
-	public function AddMultyTagLink ( $idLink = '', $tags = '' ){
-		$tags = explode(",", $tags);
-		foreach( $tags as $k => $v ){
-			$tag = trim($v);
-			// var_dump($tag);
-			if($tag != ''){
-				$res = $this->AddTagLink($idLink, $tag);
-				if(!$res){
-					$this->AddError("{$tag}, is invalid.");
+
+	private function GetGlobalTotals( $arr ){
+		$res = array();
+		$res["total"] = 0;
+		foreach ($arr as $k => $v) {
+			if( is_array($v) && count($v) > 0 ){
+				$res[$k] = 0;
+				foreach( $v["total"] as $val){
+// 					var_dump($val);
+					$res[$k] = $res[$k] + $val*1;
+					$res["total"] += $res[$k];
 				}
 			}
 		}
-		
+		return $res;
 	}
-	
-	/**
-	 * This function check if the user already exist in the DB.
-	 *
-	 * @return BOOLEAN
-	 * @see Main (DB)
-	 * @author Mauro Mandracchia <info@ideabile.com>
-	 */
-	public function AddTagLink ( $idLink = '', $tag = '' ){
-			
-		// Here we need to check if the tag is already exist
-		$idTag = $this->GetByTag($tag);
-		
-		$query = $this->db->Main("SELECT `id_link`, `id_tag` FROM `rel_tags_links` WHERE `id_link` = ?", array($idLink));
-		$result = false;
-		if($query) {
-			$result = $query->fetch(PDO::FETCH_ASSOC);
-		}
-		
-		if( $result ) {
-			return TRUE;
-		}else{
-			if( $idTag && $idLink != ''){
-				$query = $this->db->Main("INSERT INTO rel_tags_links( `id_link`, `id_tag` ) VALUES ( ?, ? )", array($idLink, $idTag));
-				return TRUE;
-			}else{
-				require FALSE;
-			}
-		}
-	}
-	
+
+
 	/**
 	 * This function return all errors saved in array, and empty the same array.
 	 *
@@ -205,8 +191,8 @@ FROM `comments` JOIN `users` ON `comments`.`user` = `users`.`id` ORDER BY `date`
 		$this->errors = array();
 		return array('errors' => $errors);
 	}
-	
-	
+
+
 	/**
 	 * Add error to the array errors.
 	 *
@@ -216,6 +202,6 @@ FROM `comments` JOIN `users` ON `comments`.`user` = `users`.`id` ORDER BY `date`
 	public function AddError ( $error ){
 		$this->errors[] = $error;
 	}
-	
-  
+
+
 }

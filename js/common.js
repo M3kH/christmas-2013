@@ -10,9 +10,9 @@
 define(['require'], function (require) {
     // Forces the JavaScript engine into strict mode: http://tinyurl.com/2dondlh
     "use strict";
- 
+
     var Config = {
-	    baseUrl: '/linksharing/js/',
+	    baseUrl: '/christmas-2013/js/',
 	    paths : {
 	        //create alias to plugins (not needed if plugins are on the baseUrl)
 	        async: 'plugins/requirejs/async',
@@ -70,25 +70,25 @@ define(['require'], function (require) {
 	    	'plugins/jquery/jquery.login':{
 		          deps: ["jquery"]
 	    	},
-	    	
+
 	    	'plugins/jquery/jquery.fullPage':{
 		          deps: ["jquery", "plugins/jquery/jquery.slimscroll.min", "vendor/jquery.ui.core_effects.min"]
 	    	},
 	    	'plugins/jquery/jquery.slimscroll.min':{
 		          deps: ["jquery"]
 	    	},
-	    	
-	    	
+
+
 	    	'plugins/jquery/selectize.min':{
 		          deps: ["jquery"]
 	    	},
-	    	
-	    	
+
+
 	    	'views/app/index':{
 		          deps: ["jquery", "plugins/jquery/jquery.mapCustomizator"]
 	    	},
-	    	
-	    	
+
+
 	        'plugins/codemirror/mode/xml/xml': {
 	            deps: ['plugins/codemirror/codemirror']
 	        },
@@ -101,7 +101,7 @@ define(['require'], function (require) {
 	        'plugins/codemirror/mode/htmlmixed/htmlmixed': {
 	            deps: ['plugins/codemirror/codemirror']
 	        },
-	        
+
 	        'vendor/codemirror/mode/': {
 	            deps: ['vendor/codemirror/lib/codemirror']
 	        },
@@ -120,8 +120,8 @@ define(['require'], function (require) {
 	        'vendor/codemirror/mode/htmlmixed/htmlmixed': {
 	            deps: ['vendor/codemirror/lib/codemirror']
 	        },
-	        
-	        
+
+
 	        'vendor/codemirror/addon/': {
 	            deps: ['vendor/codemirror/lib/codemirror']
 	        },
@@ -131,7 +131,7 @@ define(['require'], function (require) {
 	        'vendor/codemirror/addon/selection/active-line': {
 	            deps: ['vendor/codemirror/lib/codemirror']
 	        },
-	        
+
 	        'plugins/codemirror/addon/comments/comment-wrapper': {
 	            deps: ['plugins/codemirror/codemirror']
 	        },
@@ -145,36 +145,36 @@ define(['require'], function (require) {
 	        	deps: ['plugins/codemirror/codemirror', 'jquery', 'plugins/codemirror/mode/xml/xml', 'plugins/codemirror/mode/javascript/javascript',
 	        	'plugins/codemirror/mode/css/css', 'plugins/codemirror/mode/htmlmixed/htmlmixed']
 	        },
-	        
+
 	        'vendor/jquery.ui.widget' : {
 	        	deps: ["jquery"]
 	        }
-	    	
-	    	
+
+
 	    }
 	};
-	
-	
+
+
 	// requirejs.config(Config);
 	var _jqueryUrl = Config.baseUrl+'vendor/jquery.js';
 	define(
 	    'jquery'
 	    , [_jqueryUrl]
 	    , function() {
-	        // we just pick up global jQuery here. 
+	        // we just pick up global jQuery here.
 	        // If you want more than one version of jQuery in dom, read a more complicated solution discussed in
 	        // "Registering jQuery As An Async-compatible Module" chapter of
 	        // http://addyosmani.com/writing-modular-js/
-	        return window.jQuery 
+	        return window.jQuery
 	    }
 	)
-	
-	
+
+
 	define(
 	    'jquery.ui.widget'
 	    , ['vendor/jquery.ui.widget']
 	)
- 
+
     // As mentioned up top, requireJS needs us to return a value - in this files case, we will return
     // a reference to the constructor function.
     return Config;

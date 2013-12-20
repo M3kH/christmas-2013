@@ -1,6 +1,22 @@
-				
+
+
 			{{#Comments}}
-			  {{#each comments}}
+				{{#comments}}
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="panel">
+							<div class="panel-body text-center">
+								<iframe src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x47c5e26f3e33bdeb%3A0x353163b6dfc2a2a!2sEsmoreitstraat%2C+Amsterdam%2C+Paesi+Bassi!5e0!3m2!1sit!2s!4v1387402312402" class="col-md-12" height="600" frameborder="0" style="border:0"></iframe>
+							</div>
+							<div class="panel-footer">
+								Whe are waiting you from the 7:00 of 24th and 10:00 of 25th
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/comments}}
+
+			  {{#each comments.details}}
 				<div class="row">
 					<div class="col-md-12 text-left">
 						<div class="col-md-2 comment-details text-center">
@@ -76,4 +92,54 @@
   				<br/>
   				<br/>
               {{/each}}
+
+				{{#comments}}
+
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="panel">
+							<div class="panel-body text-center">
+								<h3>We have reached</h3>
+								<div class="col-md-3">
+									<h4>Food & Snacks</h4>
+									<h1>{{totals.food}}</h1>
+							    	<ul class="list-group text-left">
+							    		{{#each totals_result.food}}
+									  <li class="list-group-item"> <span class="badge">{{qt}}</span> {{desc}} </li>
+							    		{{/each}}
+									</ul>
+								</div>
+								<div class="col-md-3">
+									<h4>Drinks</h4>
+									<h1>{{totals.drinks}}</h1>
+							    	<ul class="list-group text-left">
+							    		{{#each totals_result.drinks}}
+									  <li class="list-group-item"> <span class="badge">{{qt}}</span> {{desc}} </li>
+							    		{{/each}}
+									</ul>
+								</div>
+								<div class="col-md-3">
+									<h4>Stuff & Games</h4>
+									<h1>{{totals.stuff}}</h1>
+							    	<ul class="list-group text-left">
+							    		{{#each totals_result.stuff}}
+									  <li class="list-group-item"> <span class="badge">{{qt}}</span> {{desc}} </li>
+							    		{{/each}}
+									</ul>
+								</div>
+								<div class="col-md-3">
+									<h4>Friends</h4>
+									<h1>{{totals.friends}}</h1>
+							    	<ul class="list-group text-left">
+							    		{{#each totals_result.friends}}
+									  <li class="list-group-item"> <span class="badge">{{qt}}</span> {{desc}} </li>
+							    		{{/each}}
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/comments}}
           	{{/Comments}}

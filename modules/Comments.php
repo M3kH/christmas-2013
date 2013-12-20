@@ -16,9 +16,9 @@
 
 
 class WidgetComments {
-	
+
 	public $result = array();
-	
+
 	/**
 	 * Initialization of the class.
 	 *
@@ -26,17 +26,17 @@ class WidgetComments {
 	 * @author Mauro Mandracchia <info@ideabile.com>
 	 */
 	public function WidgetComments( ){
-		// var_dump($_SESSION);
 		if(isset($_SESSION['id_user'])){
 			$this->result['user'] = TRUE;
 			include_once (MAIN . '/libs/Comments.php');
 			$this -> comments = new Comments();
 			$this->result['comments'] = $this -> comments -> GetAll();
+// 			var_dump($this->result['comments']);
 		}else{
-			$this->result['not_user'] = FALSE;
+			$this->result['not_user'] = TRUE;
 		}
-				
+
 		// $this->result["script"] = $minifiedCode;
 	}
-  
+
 }

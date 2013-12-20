@@ -27,6 +27,11 @@ $config['api']['route']["comments/"]["class"] = "Comments";
 $config['api']['route']["comments/"]["fnc"] = "GetAll";
 $config['api']['route']["comments/"]["method"] = "get";
 
+$config['api']['route']["comments/new/"] = array();
+$config['api']['route']["comments/new/"]["class"] = "Comments";
+$config['api']['route']["comments/new/"]["fnc"] = "NewLink";
+$config['api']['route']["comments/new/"]["method"] = "post";
+
 $config['api']['route']["links/"] = array();
 $config['api']['route']["links/"]["class"] = "Links";
 $config['api']['route']["links/"]["fnc"] = "GetAll";
