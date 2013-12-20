@@ -1,0 +1,79 @@
+				
+			{{#Comments}}
+			  {{#each comments}}
+				<div class="row">
+					<div class="col-md-12 text-left">
+						<div class="col-md-2 comment-details text-center">
+							<img src="http://lorempixel.com/100/100/people" class="img-thumbnail" alt="avatar" />
+							<br />
+							{{name}} {{last_name}}
+						</div>
+						<div class="col-md-10">
+							<div class="panel panel-default">
+								<div class="panel-body">
+							    	{{message}}
+								</div>
+								<div class="panel-footer">
+									<ul class="nav nav-pills">
+										<li>
+											<!-- Single button -->
+											<div class="btn-group">
+											  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+											    Food & Snacks <span class="badge">{{brings.food.total}}</span>
+											  </button>
+											  <ul class="dropdown-menu" role="menu">
+												{{#each brings.food}}
+													<li>{{desc}} <span class="badge pull-right">{{qt}}</span></li>
+												{{/each}}
+											  	</ul>
+											</div>
+										</li>
+										<li>
+											<!-- Single button -->
+											<div class="btn-group">
+											  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+											    Drink <span class="badge">{{brings.drinks.total}}</span>
+											  </button>
+											  <ul class="dropdown-menu" role="menu">
+												{{#each brings.drinks}}
+													<li>{{desc}} <span class="badge pull-right">{{qt}}</span></li>
+												{{/each}}
+											  	</ul>
+											</div>
+										</li>
+										<li>
+											<!-- Single button -->
+											<div class="btn-group">
+											  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+											    Stuff and Gamess <span class="badge">{{brings.stuff.total}}</span>
+											  </button>
+											  <ul class="dropdown-menu" role="menu">
+												{{#each brings.stuff}}
+													<li>{{desc}} <span class="badge pull-right">{{qt}}</span></li>
+												{{/each}}
+											  	</ul>
+											</div>
+										</li>
+										<li>
+											<!-- Single button -->
+											<div class="btn-group">
+											  <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+											    Friends <span class="badge">{{brings.friends.total}}</span>
+											  </button>
+											  <ul class="dropdown-menu" role="menu">
+												{{#each brings.friends}}
+													<li>{{desc}} <span class="badge pull-right">{{qt}}</span></li>
+												{{/each}}
+											  	</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+  				<br/>
+  				<br/>
+              {{/each}}
+          	{{/Comments}}
