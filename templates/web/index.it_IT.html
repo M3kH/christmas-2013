@@ -1,5 +1,5 @@
 
-{{{requirejs b="something" widget="something"}}}
+{{{!requirejs b="something" widget="something"}}}
 {{{template.web.widget.header someOptions="something" test="Linksharing" head.title="Linksharing" }}}
       <!-- Example row of columns -->
       <!-- Example row of columns -->  
@@ -109,43 +109,16 @@
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-md-12 text-left">
-						<div class="col-md-2 comment-details text-center">
-							<img src="http://lorempixel.com/100/100/people" class="img-thumbnail" alt="avatar" />
-							<br />
-							Cristina Valota
-						</div>
-						<div class="col-md-10">
-							<div class="panel panel-default">
-								<div class="panel-body">
-							    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat posuere tellus sit amet iaculis. 
-							    	In commodo arcu vitae nibh convallis, non bibendum nisi mattis. Donec a lectus ante. Sed quis mi sagittis, 
-							    	elementum est quis, hendrerit massa. Quisque vitae venenatis tellus. Suspendisse dictum pharetra augue. 
-							    	Proin vel dui est. Nam at nisi suscipit, sodales quam vitae, sodales erat. Donec vulputate, nisl vel aliquet bibendum,
-							    	augue ante condimentum sapien, ac rhoncus massa libero vel tellus. Nulla consequat mauris in porta luctus
-								</div>
-								<div class="panel-footer">
-									<ul class="nav nav-pills">
-										<li class="label label-warning">Food & Snacks <span class="badge">3</span></li>
-										<li class="label label-primary">Drink <span class="badge">3</span></li>
-										<li class="label label-success">Stuff and Games <span class="badge">3</span></li>
-										<li class="label label-info">Friends <span class="badge">3</span></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-					<br/>
-					<br/>
-					<br/>
-				
 					{{/user}}
 		              {{#not_user}}
 		              {{/not_user}}
 				{{/Comments}}
 			</div>
+			
+				<br/>
+				<br/>
+				<br/>
+				{{{template.web.widget.comments}}}
 			    {{{template.web.widget.form}}}
 				
 			{{#Login}}

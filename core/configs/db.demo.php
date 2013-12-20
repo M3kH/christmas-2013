@@ -22,7 +22,7 @@
 class Shell {
 	public $host = "localhost";
 	public $port = "3306";
-	public $dbname = "links";
+	public $dbname = "christmas";
 	public $user = "root";
 	public $password = "root";
 }

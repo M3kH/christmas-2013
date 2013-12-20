@@ -15,7 +15,7 @@
  */
 
 
-class Tags {
+class Comments {
 	
 	/**
 	 * Initialization of the class.
@@ -23,7 +23,7 @@ class Tags {
 	 * @return -
 	 * @author Mauro Mandracchia <info@ideabile.com>
 	 */
-	public function Tags( ){
+	public function Comments( ){
 		require_once(MAIN.'/core/db.php');
 		$this->db = new DB();
 		$this->errors = array();
@@ -43,14 +43,24 @@ class Tags {
 	 */
 	public function GetAll ( ){
 		
-		$q = "SELECT `id`, `name` FROM `tags` ORDER BY `name` ASC";
+		$q = "SELECT `comments`.`id`, `comments`.`message`, `comments`.`brings`, `comments`.`date`,
+		`users`.`name`, `users`.`last_name`, `users`.`id` as `users`  
+FROM `comments` JOIN `users` ON `comments`.`user` = `users`.`id` ORDER BY `date` ASC";
 		$p = array();
 		
-		$query = $this->db->Shell($q, $p);
+		$query = $this->db->Main($q, $p);
 		
 		if($query) {
 			$result = $query->fetchAll(PDO::FETCH_ASSOC);
 			if( $result ) {
+				foreach ($result as $key => $value) {
+					$res = $result[$key]['brings'];
+					$res = json_decode($res, true);
+					$totals = $this->GetTotals($res);
+					$res = array_merge_recursive($res, $totals);
+					
+					$result[$key]['brings'] = $res;
+				}
 				return $result;
 			}else{
 				return array();
@@ -58,6 +68,20 @@ class Tags {
 		} else {
 			return array();
 		}
+	}
+	
+	private function GetTotals( $arr ){
+		$res = array();
+		foreach ($arr as $k => $v) {
+			if( is_array($v) && count($v) > 0 ){
+				$res[$k]["total"] = 0;
+				foreach( $v as $val){
+					// var_dump($val);
+					$res[$k]["total"] = $res[$k]["total"] + $val["qt"]*1;
+				}
+			}
+		}
+		return $res;
 	}
 	
 	/**
@@ -69,7 +93,7 @@ class Tags {
 	 */
 	public function GetByLink ( $id = '' ){
 		$id = $_POST['id'];
-		$query = $this->db->Shell("SELECT `tags`.`id`, `tags`.`name`, (`rel_tags_links`.`id_link` IS NOT NULL) AS `id_link` FROM `tags` LEFT OUTER JOIN `rel_tags_links` ON `rel_tags_links`.`id_link` = ? GROUP BY `tags`.`id`, `tags`.`name` ORDER BY `tags`.`name` ASC ", array($id));
+		$query = $this->db->Main("SELECT `tags`.`id`, `tags`.`name`, (`rel_tags_links`.`id_link` IS NOT NULL) AS `id_link` FROM `tags` LEFT OUTER JOIN `rel_tags_links` ON `rel_tags_links`.`id_link` = ? GROUP BY `tags`.`id`, `tags`.`name` ORDER BY `tags`.`name` ASC ", array($id));
 		
 		$result = false;
 		if($query) {
@@ -90,7 +114,7 @@ class Tags {
 	 * @author Mauro Mandracchia <info@ideabile.com>
 	 */
 	public function GetByTag ( $tag = '' ){
-		$query = $this->db->Shell("SELECT `tags`.`id` FROM `tags` WHERE `tags`.`name` = ?", array($tag));
+		$query = $this->db->Main("SELECT `tags`.`id` FROM `tags` WHERE `tags`.`name` = ?", array($tag));
 		// var_dump($query);
 		
 		$result = false;
@@ -113,7 +137,7 @@ class Tags {
 	 * @author Mauro Mandracchia <info@ideabile.com>
 	 */
 	public function Create ( $tag ){
-		$query = $this->db->Shell("INSERT INTO tags( `name` ) VALUES ( ? )", array($tag));
+		$query = $this->db->Main("INSERT INTO tags( `name` ) VALUES ( ? )", array($tag));
 		return $this->db->db->lastInsertId('id');
 	}
 	
@@ -152,7 +176,7 @@ class Tags {
 		// Here we need to check if the tag is already exist
 		$idTag = $this->GetByTag($tag);
 		
-		$query = $this->db->Shell("SELECT `id_link`, `id_tag` FROM `rel_tags_links` WHERE `id_link` = ?", array($idLink));
+		$query = $this->db->Main("SELECT `id_link`, `id_tag` FROM `rel_tags_links` WHERE `id_link` = ?", array($idLink));
 		$result = false;
 		if($query) {
 			$result = $query->fetch(PDO::FETCH_ASSOC);
@@ -162,7 +186,7 @@ class Tags {
 			return TRUE;
 		}else{
 			if( $idTag && $idLink != ''){
-				$query = $this->db->Shell("INSERT INTO rel_tags_links( `id_link`, `id_tag` ) VALUES ( ?, ? )", array($idLink, $idTag));
+				$query = $this->db->Main("INSERT INTO rel_tags_links( `id_link`, `id_tag` ) VALUES ( ?, ? )", array($idLink, $idTag));
 				return TRUE;
 			}else{
 				require FALSE;

@@ -26,9 +26,12 @@ class WidgetComments {
 	 * @author Mauro Mandracchia <info@ideabile.com>
 	 */
 	public function WidgetComments( ){
-		var_dump($_SESSION);
+		// var_dump($_SESSION);
 		if(isset($_SESSION['id_user'])){
 			$this->result['user'] = TRUE;
+			include_once (MAIN . '/libs/Comments.php');
+			$this -> comments = new Comments();
+			$this->result['comments'] = $this -> comments -> GetAll();
 		}else{
 			$this->result['not_user'] = FALSE;
 		}

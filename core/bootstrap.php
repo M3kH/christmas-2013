@@ -210,7 +210,7 @@ class Bootstrap {
 		require_once(MAIN.'/core/template.php' );
 		$template = new Template($m, $view);
 		$configuration = $template->RequireConfig($template->GetConfiguration());
-		// var_dump($view);
+		// var_dump($template->GetConfiguration());
 		require_once(MAIN.'/core/loader.php');
 		$loader = new Loader($configuration);
 		$loaded = $loader->loaded;

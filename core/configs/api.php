@@ -22,10 +22,10 @@ $config['api']['route']["user/social/"]["class"] = "Login";
 $config['api']['route']["user/social/"]["fnc"] = "SocialLogin";
 $config['api']['route']["user/social/"]["method"] = "get";
 
-$config['api']['route']["tags/"] = array();
-$config['api']['route']["tags/"]["class"] = "Tags";
-$config['api']['route']["tags/"]["fnc"] = "GetAll";
-$config['api']['route']["tags/"]["method"] = "get";
+$config['api']['route']["comments/"] = array();
+$config['api']['route']["comments/"]["class"] = "Comments";
+$config['api']['route']["comments/"]["fnc"] = "GetAll";
+$config['api']['route']["comments/"]["method"] = "get";
 
 $config['api']['route']["links/"] = array();
 $config['api']['route']["links/"]["class"] = "Links";
